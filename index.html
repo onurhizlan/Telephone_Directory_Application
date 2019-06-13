@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="new1.css">
+   </head>
+   <body>
+      <div class="center">
+         <div class="tab ">
+            <button class="tablinks" onclick="openFile(event, '1')">1</button>
+            <button class="tablinks" onclick="openFile(event, '2')">2</button>
+            <button class="tablinks" onclick="openFile(event, '3')">3</button>
+            <button class="tablinks" onclick="openFile(event, '4')">4</button> 
+            <button class="tablinks" onclick="openFile(event, '5')">5</button>
+            <button class="tablinks" onclick="openFile(event, '6')">6</button>
+            <button class="tablinks" onclick="openFile(event, '7')">7</button>
+            <button class="tablinks" onclick="openFile(event, '8')">8</button>
+            <button class="tablinks" onclick="openFile(event, '9')">9</button>
+            <button class="tablinks" onclick="openFile(event, '10')">10</button>
+            <button class="tablinks" onclick="openFile(event, '11')">11</button>
+            <button class="tablinks" onclick="openFile(event, '12')">12</button>
+         </div>
+      </div>
+      <div id="1" class="tabcontent">
+         <br><br><br><br>
+         <form class="form" action="kaydet.php" method="post">
+            First Name:<br>
+            <input type="text" name="ad"><br>
+            Last Name:<br>
+            <input type="text" name="soyad">	<br>
+            Adress:<br>
+            <input type="text" name="adres"><br>
+            Phone Number:<br>
+            <input type="text" name="telefon" maxlength="10" pattern="\d{10}" title="Bu input'a sadece 10 karakterli sayısal değer girilebilir" required>	<br>
+            E-mail:<br>
+            <input type="text" name="email"><br><br>
+            <input type="submit" value="Kaydet"><br>
+         </form>
+      </div>
+      <section class="section-2">
+         <div id="2" class="tabcontent">
+            
+            <table border="1" align="center" width="500">
+               <tr>
+                  <td>ad</td>
+                  <td>soyad</td>
+                  <td>adres</td>
+                  <td>telefon</td>
+                  <td>email</td>
+                  <td>Sil</td>
+               </tr>
+               <?php
+                  $baglan=mysqli_connect("localhost","root","","onurhizlan");
+                  mysqli_set_charset($baglan, "utf8");
+                  $sonuc=mysqli_query($baglan,"select * from deneme"); 
+                   
+                  while($satir=mysqli_fetch_array($sonuc))
+                  {
+                  echo '<tr>';
+                  echo '<td>'.$satir['ad'].'</td>';
+                  echo '<td>'.$satir['soyad'].'</td>';
+                  echo '<td>'.$satir['adres'].'</td>';
+                  echo '<td>'.$satir['telefon'].'</td>';
+                  echo '<td>'.$satir['email'].'</td>';
+                  echo '<td> <a href="sil.php?id='.$satir['telefon'].'" onclick="return uyari();">Sil</a> </td>';
+                  echo '</tr>';
+                  }
+                  ?>
+				  <?php echo $satir['ad']; ?>
+            </table>
+         </div>
+      </section>
+      <div id="Tokyo" class="tabcontent">
+      </div>
+      <script>
+         function openFile(evt, cityName) {
+             var i, tabcontent, tablinks;
+             tabcontent = document.getElementsByClassName("tabcontent");
+             for (i = 0; i < tabcontent.length; i++) {
+                 tabcontent[i].style.display = "none";
+             }
+             tablinks = document.getElementsByClassName("tablinks");
+             for (i = 0; i < tablinks.length; i++) {
+                 tablinks[i].className = tablinks[i].className.replace(" active", "");
+             }
+             document.getElementById(cityName).style.display = "block";
+             evt.currentTarget.className += " active";
+         }
+         
+         function uyari() {
+          
+         if (confirm("Bu kaydı silmek istediğinize emin misiniz?"))
+            return true;
+         else 
+            return false;
+         }
+      </script>
+   </body>
+</html>

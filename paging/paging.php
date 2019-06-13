@@ -1,0 +1,40 @@
+<?php
+mysqli_connect("localhost", "root", "", "onurhizlan");
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="pagination/css/pagination.css" rel="stylesheet" type="text/css" />
+<link href="pagination/css/A_green.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+
+
+<?php 
+ include("pagination/function.php");
+ $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
+    	$limit = 5; //if you want to dispaly 10 records per page then you have to change here
+    	$startpoint = ($page * $limit) - $limit;
+        $statement = "deneme order by ad asc"; //you have to pass your query over here
+
+		$res=mysqli_query("select * from {$statement} LIMIT {$startpoint} , {$limit}");
+		while($row=mysqli_fetch_array($res))
+		{
+		echo $row["ad"];
+		echo $row["soyad"];
+		echo "<br>";
+		}
+
+?>
+
+<?php
+echo "<div id='pagingg' >";
+echo pagination($statement,$limit,$page);
+echo "</div>";
+?>
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+#genel {
+	
+	
+	position:relative;
+	left:300px;
+	width:900px;
+	top:200px;
+}
+#ara input{
+	
+	width:700px;
+	height:35px;
+	border:2px solid #ddd;
+	font-size:18px;
+	font-family:verdana;
+	
+}
+#ara button {
+	
+	border:1px solid #ddd;
+	width:120px;
+	height:30px;
+	font-family:verdana;
+	font-size:18px;
+}
+
+#sonuc {
+	
+	border:1px solid #ddd;
+	width:699px;
+	padding:10px;
+	font-size:20px;
+	margin-top:3px;
+	background:#ddd;
+	
+}
+
+
+#ara h2 {
+	
+	text-align:center;
+	margin-left:30px;
+	position:relative;
+	left:200px;
+	font-size:20px;
+	border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+

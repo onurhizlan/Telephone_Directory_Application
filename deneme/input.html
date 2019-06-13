@@ -1,0 +1,28 @@
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+function tamamla(al){
+var aranan='deger:'+al;
+$.ajax({
+url: "inputdoldur.php",
+type: "get",
+data: aranan,
+datatype: 'json',
+success: function(data){
+$('#sonuc1').val(data.secilen);
+$("#sonuc2").val(data.kategori);
+$("#sonuc3").val(data.begen);
+}
+});       
+});
+}
+</script>
+</head>
+<body>
+<input type="text" id="sonuc"/>
+<input type="text" id="sonuc1"/>
+<input type="text" id="sonuc2"/>
+<input type="text" id="sonuc3"/>
+</body>
+</html>
